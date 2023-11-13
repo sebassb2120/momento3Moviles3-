@@ -1,20 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import UserScreen from './components/UserScreen';
+import CarScreen from './components/CarScreen';
+import RentScreen from './components/RentScreen';
+
+//import Chat from './components/Chat';
+import Settings from './components/Settings'
+import Bottomtab from './components/Bottomtab';
+
+const Stack = createNativeStackNavigator();
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='bottomtab'>
+        
+        <Stack.Screen name='Login' component={UserScreen} />
+        <Stack.Screen name='Cars' component={CarScreen} />
+        <Stack.Screen name='Rent' component={RentScreen} />
+        
+        <Stack.Screen name='Settings' component={Settings}/>
+        <Stack.Screen name='bottomtab' component={Bottomtab} options={{title:'sistema prueba'}}/>
+
+      </Stack.Navigator>
+     </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
