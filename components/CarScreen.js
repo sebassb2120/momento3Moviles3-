@@ -5,7 +5,7 @@ import { cars } from "../data"; // Importa datos de carros (asegúrate de que es
 import { Card, Title, List } from "react-native-paper"; // Importa componentes de react-native-paper
 import { useNavigation } from "@react-navigation/native"; // Importa useNavigation para la navegación
 import RentScreen from "./RentScreen"; // Importa el componente RentScreen
-import { styles } from '../assets/styles/allstyles'; 
+import { styles } from "../assets/styles/allstyles";
 
 function CarScreen() {
   // Definición de estados para los datos del nuevo carro
@@ -58,7 +58,7 @@ function CarScreen() {
   };
 
   // Función para navegar a la pantalla de usuario
-  const navigateToUserScreen = () => {
+  const navigateToLoginScreen = () => {
     navigation.navigate("Login");
   };
 
@@ -67,9 +67,21 @@ function CarScreen() {
     navigation.navigate("Rent");
   };
 
+  // Función para navegar a la pantalla de alquiler
+  const Settings = () => {
+    navigation.navigate("Settings");
+  };
+
   return (
-    <View style={{ padding: 20, backgroundColor:'gray'}}>
-      <Title style={{ marginTop: 35, fontSize: 20, textAlign: "center" }}>
+    <View style={{ padding: 20, backgroundColor: "gray" }}>
+      <Title
+        style={{
+          textAlign: "center",
+          fontSize: 20,
+          padding: 30,
+          fontWeight: "bold",
+        }}
+      >
         Agregar Vehiculo.
       </Title>
       <Card>
@@ -99,17 +111,23 @@ function CarScreen() {
             <Text style={{ color: "red" }}>{errorMessage}</Text>
           ) : null}
         </Card.Content>
-        
       </Card>
 
       {/* Botón para agregar un carro */}
-      <Button      
-          title="Añadir Vehiculo"
-          onPress={handleAddCar}
-          style={{ margin: 50, backgroundColor: 'orange', color: 'white' }}
-        />
+      <Button
+        title="Añadir Vehiculo"
+        onPress={handleAddCar}
+        style={{ margin: 50, backgroundColor: "orange", color: "white" }}
+      />
 
-      <Text style={{ marginTop: 35, fontSize: 20, textAlign: "center" }}>
+      <Text
+        style={{
+          textAlign: "center",
+          fontSize: 20,
+          padding: 30,
+          fontWeight: "bold",
+        }}
+      >
         Lista de Carros:
       </Text>
 
@@ -129,13 +147,28 @@ function CarScreen() {
         )}
       />
 
-      {/* Botón para navegar a la pantalla de alquiler */}
-      <Button style={{ margin: 50, background: 'orange', color: 'white' }} title="Rentar" onPress={navigateToRentScreen}  />
-
       {/* Agrega margen entre los botones */}
       <View style={{ margin: 40 }}>
+        {/* Botón para navegar a la pantalla de alquiler */}
+        <Button
+          style={{ margin: 50, background: "orange", color: "white" }}
+          title="Rentar"
+          onPress={navigateToRentScreen}
+        />
+
         {/* Botón para volver al usuario */}
-        <Button style={{ margin: 50, backgroundColor: 'orange', color: 'white' }} title="Regresar al Inicio" onPress={navigateToUserScreen} />
+        <Button
+          style={{ margin: 50, backgroundColor: "orange", color: "white" }}
+          title="Regresar al Inicio"
+          onPress={navigateToLoginScreen}
+        />
+
+        <Button
+        style={{ margin: 50, backgroundColor: "orange", color: "white" }}
+        title="Configuraciones" onPress={Settings}
+        />
+          
+        
       </View>
     </View>
   );

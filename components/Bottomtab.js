@@ -1,24 +1,24 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import UserScreen from "./UserScreen";
-import CarsScreen from "./CarScreen";
-import RentScreen from "./RentScreen";
-import Settings from "./Settings";
-//import Chat from "./Chat";
-import Icon from 'react-native-vector-icons/FontAwesome';
+import UserScreen from "./UserScreen.js";
+import CarScreen from "./CarScreen.js";
+import RentScreen from "./RentScreen.js";
+import Settings from "./Settings.js";
+import Chat from "./Chat";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const Tab = createBottomTabNavigator(); // variable para especificar las opciones de bottom tabs
 
 export default function Bottomtab() {
   return (
     <Tab.Navigator
-      initialRouteName="Settings"
+      initialRouteName="CarsScreen"
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: "orange",
         tabBarInactiveBackgroundColor: "black",
       }}
     >
-      <Tab.Screen    
+      <Tab.Screen
         name="Login"
         component={UserScreen}
         options={{
@@ -29,10 +29,9 @@ export default function Bottomtab() {
 
       <Tab.Screen
         name="CarsScreen"
-        component={CarsScreen}
+        component={CarScreen}
         options={{
           title: "Autos",
-          tabBarStyle: { display: "none" },
         }}
       />
 
@@ -41,12 +40,16 @@ export default function Bottomtab() {
         component={RentScreen}
         options={{
           title: "Renta Auto",
-          tabBarStyle: { display: "none" },
         }}
       />
 
-      
-
+      <Tab.Screen
+        name="Chat"
+        component={Chat}
+        options={{
+          title: "Cliente",
+        }}
+      />
 
       <Tab.Screen
         name="Settings"
@@ -55,7 +58,6 @@ export default function Bottomtab() {
           title: "Configuraciones",
         }}
       />
-    
     </Tab.Navigator>
   );
 }

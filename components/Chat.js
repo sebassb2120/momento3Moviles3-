@@ -7,6 +7,7 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
+import { styles } from "../assets/styles/allstyles.jsx";
 import { TextInput, Button } from "react-native-paper";
 import axios from "axios";
 
@@ -106,14 +107,14 @@ export default function Chat() {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text>Clientes Renta Autos</Text>
+    <View style={estyles.container}>
+      <Text style={{textAlign:'center', fontSize:20, padding:30, fontWeight:'bold'}}>Clientes Renta Autos</Text>
       {/* Formulario para clientes */}
       <TextInput
         label="Id a Buscar"
         onChangeText={(id) => setId(id)}
         value={id}
-        style={{ marginTop: 10 }}
+        style={{ marginTop: 10, background:'orange' }}
       />
       <Controller
         control={control}
@@ -126,7 +127,7 @@ export default function Chat() {
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
-            style={{ marginTop: 10 }}
+            style={{ marginTop: 10, background:'orange' }}
             autoFocus
           />
         )}
@@ -147,7 +148,7 @@ export default function Chat() {
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
-            style={{ marginTop: 10 }}
+            style={{ marginTop: 10, background:'orange' }}
           />
         )}
         name="apellidos"
@@ -167,7 +168,7 @@ export default function Chat() {
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
-            style={{ marginTop: 10 }}
+            style={{ marginTop: 10, background:'orange'}}
           />
         )}
         name="Identificacion"
@@ -187,21 +188,14 @@ export default function Chat() {
         </Button>
 
         <Button
-          style={{ marginTop: 20 }}
+          style={{ marginTop: 20, textAlign:'center' }}
           icon="magnify"
           mode="outlined"
           onPress={() => getCustomerById(id)}
         >
           Buscar
         </Button>
-        <Button
-          style={{ marginTop: 20 }}
-          icon="pencil"
-          mode="outlined"
-          onPress={handleSubmit(onUpdate)}
-        >
-          Actualizar
-        </Button>
+       
       </View>
       <View style={{ flexDirection: "row" }}>
         <Button
@@ -222,11 +216,13 @@ export default function Chat() {
           }}
         >
           Limpiar
-        </Button>
+       </Button>        
       </View>
+
+      
       <Text style={{ color: isError ? "red" : "green" }}>{message}</Text>
 
-      <Text style={{ marginTop: 30 }}>Listado de Clientes</Text>
+      <Text style={{textAlign:'center', fontSize:20, padding:30, fontWeight:'bold'}}>Listado de Clientes</Text>
       <FlatList
         data={dataCustomers}
         renderItem={({ item }) => (
@@ -246,3 +242,39 @@ export default function Chat() {
     </View>
   );
 }
+
+const estyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 25,
+    backgroundColor: '#fff',
+  },
+  titulo: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  opcionContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+
+  botonGuardar: {
+      backgroundColor: 'orange',
+      padding: 15,
+      borderRadius: 10,
+      justifyContent: 'space-between'         
+      
+  },
+
+  textoBotonGuardar: {
+  color: 'white',     
+  fontSize: 16,
+  fontWeight: 'bold',    
+  }
+     
+  
+   
+});
